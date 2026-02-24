@@ -22,7 +22,7 @@ describe("QueryProcessor", () => {
         const query = "What is your name?";
         const response: string = QueryProcessor(query);
         expect(response).toBe((
-            "Rohan"
+            "eseudieu"
           ));
     })
 
@@ -32,5 +32,11 @@ describe("QueryProcessor", () => {
         expect(response).toBe((
             "eseudieu"
           ));
+    })
+
+    test('should return sum of two numbers', () => {
+        const query = "3 plus 5";
+        const response: string = QueryProcessor(query);
+        expect(response).toBe("8");
     })
 });

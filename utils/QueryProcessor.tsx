@@ -15,5 +15,12 @@ export default function QueryProcessor(query: string): string {
     return "eseudieu";
   }
 
+  if (query.toLowerCase().includes("plus")) {
+    var tokens = query.split(/\D+/);
+    var num1 = parseInt(tokens[0]);
+    var num2 = parseInt(tokens[1]);
+    return (num1 + num2).toString();
+  }
+
   return "";
 }
