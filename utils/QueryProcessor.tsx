@@ -17,52 +17,41 @@ export default function QueryProcessor(query: string): string {
 
   if (query.toLowerCase().includes("plus")) {
     var tokens = query.split(/\D+/);
-    ans = 0
+    var ans = 0
     for(var i = 1; i < tokens.length - 1; i++)
-    {
       ans += parseInt(tokens[i]);
-    }
     return ans.toString();
   }
 
   if (query.toLowerCase().includes("minus")) {
-    var tokens = query.split(/\D+/);
-    var num1 = parseInt(tokens[1]);
-    var num2 = parseInt(tokens[2]);
+    let tokens = query.split(/\D+/);
+    let num1 = parseInt(tokens[1]);
+    let num2 = parseInt(tokens[2]);
     return (num1 - num2).toString();
   }
 
   if (query.toLowerCase().includes("multiplied")) {
-    var tokens = query.split(/\D+/);
+    let tokens = query.split(/\D+/);
     var ans = 1;
     for(var i = 1; i < tokens.length - 1; i++)
-    {
       ans *= parseInt(tokens[i]);
-    }
     return ans.toString();
   }
 
   if (query.toLowerCase().includes("numbers is the largest")) {
-    var tokens = query.split(/\D+/);
+    let tokens = query.split(/\D+/);
     var greatest = -9999;
     for(var i = 1; i < tokens.length - 1; i++)
-    {
-      if(parseInt(tokens[i]) > greatest){
+      if(parseInt(tokens[i]) > greatest)
         greatest = parseInt(tokens[i])
-      }
-    }
     return greatest.toString();
   }
 
   if (query.toLowerCase().includes("square and a cube")) {
-    var tokens = query.split(/\D+/);
-    var squares_and_cubes = [0, 1, 64, 729, 4096, 15625, 46656]
+    let tokens = query.split(/\D+/);
+    let squares_and_cubes = [0, 1, 64, 729, 4096, 15625, 46656]
     for(var i = 1; i < tokens.length - 1; i++)
-    {
-      if(squares_and_cubes.includes(parseInt(tokens[i]))){
-        return tokens[i];
-      }
-    }
+      if(squares_and_cubes.includes(parseInt(tokens[i]))) return tokens[i];
   }
 
   return "";
