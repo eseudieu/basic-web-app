@@ -38,6 +38,15 @@ export default function QueryProcessor(query: string): string {
     return ans.toString();
   }
 
+  if (query.toLowerCase().includes("to the power of")) {
+    let tokens = query.split(/\D+/);
+    var ans = 1;
+    let base = parseInt(tokens[1])
+    let exp = parseInt(tokens[2])
+    for(var i = 0; i < exp; i++) ans *= base;
+    return ans.toString();
+  }
+
   if (query.toLowerCase().includes("numbers is the largest")) {
     let tokens = query.split(/\D+/);
     var greatest = -9999;
