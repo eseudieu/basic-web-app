@@ -17,31 +17,41 @@ export default function QueryProcessor(query: string): string {
 
   if (query.toLowerCase().includes("plus")) {
     var tokens = query.split(/\D+/);
+    ans = 0
+    for(var i = 1; i < tokens.length - 1; i++)
+    {
+      ans += parseInt(tokens[i]);
+    }
+    return ans.toString();
+  }
+
+  if (query.toLowerCase().includes("minus")) {
+    var tokens = query.split(/\D+/);
     var num1 = parseInt(tokens[1]);
     var num2 = parseInt(tokens[2]);
-    console.log(num1);
-    console.log(num2);
-    return (num1 + num2).toString();
+    return (num1 - num2).toString();
   }
 
   if (query.toLowerCase().includes("multiplied")) {
     var tokens = query.split(/\D+/);
-    var num1 = parseInt(tokens[1]);
-    var num2 = parseInt(tokens[2]);
-    console.log(num1);
-    console.log(num2);
-    return (num1 * num2).toString();
+    var ans = 1;
+    for(var i = 1; i < tokens.length - 1; i++)
+    {
+      ans *= parseInt(tokens[i]);
+    }
+    return ans.toString();
   }
 
   if (query.toLowerCase().includes("numbers is the largest")) {
     var tokens = query.split(/\D+/);
-    console.log(tokens);
-    var num1 = parseInt(tokens[1]);
-    var num2 = parseInt(tokens[2]);
-    var num3 = parseInt(tokens[3]);
-    if(num1 > num2 && num1 > num3) return num1.toString();
-    if(num2 > num1 && num2 > num3) return num2.toString();
-    return num3.toString();
+    var greatest = -9999;
+    for(var i = 1; i < tokens.length - 1; i++)
+    {
+      if(parseInt(tokens[i]) > greatest){
+        greatest = parseInt(tokens[i])
+      }
+    }
+    return greatest.toString();
   }
 
   if (query.toLowerCase().includes("square and a cube")) {
