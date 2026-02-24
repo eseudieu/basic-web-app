@@ -44,5 +44,16 @@ export default function QueryProcessor(query: string): string {
     return num3.toString();
   }
 
+  if (query.toLowerCase().includes("square and a cube")) {
+    var tokens = query.split(/\D+/);
+    var squares_and_cubes = [0, 1, 64, 729, 4096, 15625, 46656]
+    for(var i = 1; i < tokens.length - 1; i++)
+    {
+      if(squares_and_cubes.includes(parseInt(tokens[i]))){
+        return tokens[i];
+      }
+    }
+  }
+
   return "";
 }
