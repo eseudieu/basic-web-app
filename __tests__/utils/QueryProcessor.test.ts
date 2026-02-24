@@ -35,8 +35,14 @@ describe("QueryProcessor", () => {
     })
 
     test('should return sum of two numbers', () => {
-        const query = "3 plus 5";
+        const query = "What is 15 plus 87?";
         const response: string = QueryProcessor(query);
-        expect(response).toBe("8");
+        expect(response).toBe("102");
+    })
+
+    test('should return largest number', () => {
+        const query = "Which of the following numbers is the largest: 71, 57, 67?";
+        const response: string = QueryProcessor(query);
+        expect(response).toBe("71");
     })
 });
