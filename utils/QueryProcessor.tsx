@@ -15,6 +15,26 @@ export default function QueryProcessor(query: string): string {
     return "eseudieu";
   }
 
+  if (query.toLowerCase().includes("scrabble score")) {
+    const scrabbleScores: { [key: string]: number } = {
+      a: 1, b: 3, c: 3, d: 2, e: 1, f: 4, g: 2, h: 4, i: 1, j: 8, k: 5,
+      l: 1, m: 3, n: 1, o: 1, p: 3, q: 10, r: 1, s: 1, t: 1, u: 1, v: 4,
+      w: 4, x: 8, y: 4, z: 10
+    };
+    
+    // Extract the word from the query
+    let match = query.match(/of\s+(\w+)\?/i);
+    if (match) {
+      let word = match[1].toLowerCase();
+      let score = 0;
+      for (let char of word) {
+        score += scrabbleScores[char] || 0;
+      }
+      return score.toString();
+    }
+    return "";
+  }
+
   if (query.toLowerCase().includes("multiplied") && query.toLowerCase().includes("plus")) {
     let tokens = query.split(/\D+/);
     let nums = tokens.slice(1, tokens.length - 1).map(t => parseInt(t));
