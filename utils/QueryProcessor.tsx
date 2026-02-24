@@ -55,6 +55,24 @@ export default function QueryProcessor(query: string): string {
     }
   }
 
+  if (query.toLowerCase().includes("are primes")) {
+    let tokens = query.split(/\D+/);
+    let nums = tokens.slice(1, tokens.length - 1).map(t => parseInt(t));
+    
+    const isPrime = (n: number): boolean => {
+      if (n <= 1) return false;
+      if (n <= 3) return true;
+      if (n % 2 === 0 || n % 3 === 0) return false;
+      for (let i = 5; i * i <= n; i += 6) {
+        if (n % i === 0 || n % (i + 2) === 0) return false;
+      }
+      return true;
+    };
+    
+    let primes = nums.filter(num => isPrime(num));
+    return primes.join(", ");
+  }
+
   if (query.toLowerCase().includes("plus")) {
     var tokens = query.split(/\D+/);
     var ans = 0
