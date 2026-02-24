@@ -50,8 +50,10 @@ export default function QueryProcessor(query: string): string {
   if (query.toLowerCase().includes("square and a cube")) {
     let tokens = query.split(/\D+/);
     let squares_and_cubes = [0, 1, 64, 729, 4096, 15625, 46656]
+    const ans = [];
     for(var i = 1; i < tokens.length - 1; i++)
-      if(squares_and_cubes.includes(parseInt(tokens[i]))) return tokens[i];
+      if(squares_and_cubes.includes(parseInt(tokens[i]))) ans.push(tokens[i]);
+    ans.join(", ")
   }
 
   return "";
