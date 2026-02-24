@@ -24,6 +24,15 @@ export default function QueryProcessor(query: string): string {
     return (num1 + num2).toString();
   }
 
+  if (query.toLowerCase().includes("multiplied")) {
+    var tokens = query.split(/\D+/);
+    var num1 = parseInt(tokens[1]);
+    var num2 = parseInt(tokens[2]);
+    console.log(num1);
+    console.log(num2);
+    return (num1 * num2).toString();
+  }
+
   if (query.toLowerCase().includes("numbers is the largest")) {
     var tokens = query.split(/\D+/);
     console.log(tokens);
