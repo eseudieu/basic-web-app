@@ -15,6 +15,26 @@ export default function QueryProcessor(query: string): string {
     return "eseudieu";
   }
 
+  if (query.toLowerCase().includes("multiplied") && query.toLowerCase().includes("plus")) {
+    let tokens = query.split(/\D+/);
+    let nums = tokens.slice(1, tokens.length - 1).map(t => parseInt(t));
+    let lowerQuery = query.toLowerCase();
+    
+    // Find positions of "multiplied" and "plus"
+    let multipliedIndex = lowerQuery.indexOf("multiplied");
+    let plusIndex = lowerQuery.indexOf("plus");
+    
+    if (multipliedIndex < plusIndex) {
+      // Format: num multiplied by num plus num (e.g., "46 multiplied by 41 plus 67")
+      let result = nums[0] * nums[1] + nums[2];
+      return result.toString();
+    } else {
+      // Format: num plus num multiplied by num (e.g., "46 plus 41 multiplied by 67")
+      let result = nums[0] + nums[1] * nums[2];
+      return result.toString();
+    }
+  }
+
   if (query.toLowerCase().includes("plus")) {
     var tokens = query.split(/\D+/);
     var ans = 0
@@ -43,8 +63,7 @@ export default function QueryProcessor(query: string): string {
     var ans = 1;
     let base = parseInt(tokens[1])
     let exp = parseInt(tokens[2])
-    for(var i = 0; i < exp; i++) ans *= base;
-    return ans.toString();
+    return (base ** exp).toString();
   }
 
   if (query.toLowerCase().includes("numbers is the largest")) {
